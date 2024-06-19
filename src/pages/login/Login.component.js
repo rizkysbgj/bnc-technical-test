@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Form, Icon, Input } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
 
+import { postData } from '../../apiClient'
+
 import './Login.style.css';
 
 const Login = () => {
@@ -39,8 +41,8 @@ const Login = () => {
     setIsPasswordShown(true);
   }
 
-  const onSubmit = (value) => {
-    console.log(JSON.stringify(value));
+  const onSubmit = async (value) => {
+    await postData('/bnc-gateway/login', value);
   };
 
   const renderIcon = (name) => {
@@ -86,7 +88,7 @@ const Login = () => {
     return(
       <div className="footerContainer">
         <p>Without Account?</p>
-        <a href="/">Register Now</a>
+        <a href="/registration">Register Now</a>
       </div>
     )
   }
